@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://nguoiviettradecoin.github.io/biolink/ -->
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>EmaCrypto | Link in Bio</title>
+
+    <link rel="stylesheet" href="./assets/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #050202;
+            /* Changed to Gold/Yellow theme for EmaCrypto */
+            --fire-primary: #FFD700;
+            /* Gold */
+            --fire-secondary: #ffA500;
+            /* Orange Gold */
+            --glass: rgba(20, 20, 20, 0.85);
+            --border: rgba(255, 215, 0, 0.3);
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            /* Fallback */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow: hidden;
+            color: #fff;
+            position: relative;
+            cursor: default;
+        }
+
+        /* --- BACKGROUND LAYERS --- */
+        #bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./assets/backgound.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -5;
+            will-change: transform;
+            /* Hint for hardware acceleration */
+        }
+
+        #bg-dark-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -4;
+            pointer-events: none;
+        }
+
+        #bg-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+            filter: brightness(0.3) sepia(0.2) contrast(1.1);
+        }
+
+        #embers-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.05;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* --- TOAST NOTIFICATION (Thông báo copy) --- */
+        #toast {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid var(--fire-primary);
+            padding: 12px 25px;
+            border-radius: 50px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transition: top 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        #toast.show {
+            top: 30px;
+        }
+
+        .toast-icon {
+            color: #00ff00;
+        }
+
+        .toast-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* --- OVERLAY --- */
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background: url('./assets/backgound.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .system-status {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--fire-secondary);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .blink-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--fire-primary);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        .enter-btn-pro {
+            position: relative;
+            padding: 15px 50px;
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid var(--fire-primary);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .enter-btn-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent);
+            animation: scan 2s infinite;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 2px;
+            background: #333;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: var(--fire-primary);
+            animation: loadProgress 2.5s ease-out forwards;
+        }
+
+        /* --- SCROLL WRAPPER --- */
+        .scroll-wrapper {
+            position: absolute;
+            inset: 0;
+            overflow-y: auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* HUD CORNERS */
+        .hud-corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            transition: 0.5s ease;
+            pointer-events: none;
+        }
+
+        .hud-tl {
+            top: 0;
+            left: 0;
+            border-right: 0;
+            border-bottom: 0;
+        }
+
+        .hud-tr {
+            top: 0;
+            right: 0;
+            border-left: 0;
+            border-bottom: 0;
+        }
+
+        .hud-bl {
+            bottom: 0;
+            left: 0;
+            border-right: 0;
+            border-top: 0;
+        }
+
+        .hud-br {
+            bottom: 0;
+            right: 0;
+            border-left: 0;
+            border-top: 0;
+        }
+
+        .profile-container:hover .hud-corner {
+            border-color: var(--fire-secondary);
+            width: 40px;
+            height: 40px;
+        }
+
+        /* --- ANIMATIONS & COMPONENTS --- */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .avatar-box {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px var(--fire-primary), inset 0 0 10px var(--fire-secondary);
+        }
+
+        .avatar-box::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: conic-gradient(transparent, var(--fire-primary), transparent);
+            animation: spin 3s linear infinite;
+            z-index: 1;
+            filter: blur(5px);
+        }
+
+        .username {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-align: center;
+            background: linear-gradient(to right, #fff 20%, #ffd700 40%, #ffd700 60%, #fff 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .role-tag {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .fire-icon {
+            color: var(--fire-secondary);
+            animation: flicker 1.5s infinite;
+        }
+
+        .hub-title {
+            width: 100%;
+            text-align: left;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 3px solid var(--fire-primary);
+            padding-left: 10px;
+        }
+
+        /* NEW: SPOTLIGHT BUTTONS */
+        .spotlight-btn {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        /* Lớp ánh sáng di chuyển theo chuột */
+        .spotlight-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 215, 0, 0.15), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .spotlight-btn:hover::before {
+            opacity: 1;
+        }
+
+        .community-hub {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hub-card {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #fff;
+            z-index: 1;
+        }
+
+        .hub-card>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hub-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--fire-primary);
+            box-shadow: 0 -4px 8px var(--fire-primary);
+            opacity: 0.8;
+        }
+
+        .hub-card:hover {
+            border-color: var(--fire-secondary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hc-icon {
+            font-size: 1.8rem;
+        }
+
+        .hc-name {
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-align: center;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+            -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-text {
+            font-weight: 700;
+            text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+        }
+
+        .hc-action {
+            font-size: 0.7rem;
+            color: var(--fire-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .links-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-link {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .btn-link>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-link:active {
+            transform: scale(0.98);
+        }
+
+        .btn-link:hover {
+            border-color: var(--fire-primary);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-icon {
+            font-size: 1.3rem;
+            width: 24px;
+            text-align: center;
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        .btn-link:hover .btn-icon {
+            color: var(--fire-secondary);
+            transform: scale(1.1);
+        }
+
+        .btn-arrow {
+            opacity: 0.5;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .btn-link:hover .btn-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
+        .click-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--fire-secondary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: explode 0.6s ease-out forwards;
+        }
+
+        .social-footer {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .sf-item {
+            font-size: 1.4rem;
+            color: #888;
+            transition: 0.3s;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            width: 50px;
+            height: 50px;
+            text-decoration: none;
+        }
+
+        .sf-item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--fire-primary);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .status-footer {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        .stat-box {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .live-ping {
+            width: 6px;
+            height: 6px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #00ff00;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes flicker {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes scan {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes loadProgress {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="toast">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <span class="toast-text">Đã sao chép!</span>
+    </div>
+
+    <div id="overlay">
+        <div class="loader-content">
+            <div class="system-status">
+                <div class="blink-dot"></div> EMA CRYPTO SYSTEM
+            </div>
+            <div class="enter-btn-pro">THAM GIA NGAY</div>
+            <div class="loading-bar">
+                <div class="bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bg-image"></div>
+    <div id="bg-dark-layer"></div>
+    <video id="bg-video" loop="" playsinline="" muted="" style="display: none;">
+        <!-- Video source removed as it was broken. Canvas animation 'embers-canvas' provides the background. -->
+        <!-- <source src="./assets/bg-video.mp4" type="video/mp4"> -->
+    </video>
+    <div class="noise-overlay"></div>
+    <canvas id="embers-canvas" width="1728" height="962" style="opacity: 0.6;"></canvas>
+    <audio id="bg-music" loop="">
+        <source src="./assets/bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="scroll-wrapper">
+        <div class="profile-container" id="main">
+
+            <div class="hud-corner hud-tl"></div>
+            <div class="hud-corner hud-tr"></div>
+            <div class="hud-corner hud-bl"></div>
+            <div class="hud-corner hud-br"></div>
+
+            <div class="avatar-box stagger-item visible">
+                <img src="./assets/profile.png" alt="Avatar" class="avatar">
+            </div>
+
+            <h1 class="username stagger-item visible">EmaCryptoVN</h1>
+            <div class="role-tag stagger-item visible">
+                <i class="fas fa-fire fire-icon"></i> Cộng Đồng Trading Số 1 Việt Nam
+            </div>
+
+            <!-- Main Communities (Big Impact) -->
+            <div class="community-hub stagger-item visible">
+                <a href="https://t.me/emacrypto" class="hub-card spotlight-btn">
+                    <i class="fab fa-telegram-plane hc-icon" style="color: #0088cc;"></i>
+                    <span class="hc-name">Telegram VIP</span>
+                    <span class="hc-action">Join Now <i class="fas fa-bolt"></i></span>
+                </a>
+
+                <a href="https://www.facebook.com/emacryptovn" class="hub-card spotlight-btn">
+                    <i class="fab fa-facebook-f hc-icon" style="color: #1877f2;"></i>
+                    <span class="hc-name">Facebook Page</span>
+                    <span class="hc-action">Follow <i class="fas fa-fire"></i></span>
+                </a>
+            </div>
+
+            <!-- Main Action Links -->
+            <div class="hub-title stagger-item visible">⚡ Kênh & Tin Tức</div>
+            <div class="links-group stagger-item visible">
+                <a href="https://t.me/emacrypto" class="btn-link spotlight-btn">
+                    <div class="btn-left">
+                        <i class="fab fa-telegram btn-icon" style="color: #0088cc;"></i>
+                        <span class="btn-text">KÊNH TELEGRAM FUTURE SPOT</span>
+                    </div>
+                    <i class="fas fa-chevron-right btn-arrow"></i>
+                </a>
+
+                <a href="https://t.me/emacryptovietnam" class="btn-link spotlight-btn">
+                    <div class="btn-left">
+                        <i class="fas fa-newspaper btn-icon" style="color: #ffd700;"></i>
+                        <span class="btn-text">TIN TỨC NHANH CRYPTO 24/24</span>
+                    </div>
+                    <i class="fas fa-chevron-right btn-arrow"></i>
+                </a>
+
+                <a href="https://t.me/xuanthangcrypto" class="btn-link spotlight-btn">
+                    <div class="btn-left">
+                        <i class="fas fa-briefcase btn-icon" style="color: #fff;"></i>
+                        <span class="btn-text">LIÊN HỆ CÔNG VIỆC</span>
+                    </div>
+                    <i class="fas fa-chevron-right btn-arrow"></i>
+                </a>
+
+                <a href="https://emacrypto.vn/" class="btn-link spotlight-btn">
+                    <div class="btn-left">
+                        <i class="fas fa-globe btn-icon" style="color: #00ff99;"></i>
+                        <span class="btn-text">WEBSITE TIN TỨC CRYPTO</span>
+                    </div>
+                    <i class="fas fa-external-link-alt btn-arrow"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@emacryptonews" class="btn-link spotlight-btn">
+                    <div class="btn-left">
+                        <i class="fab fa-tiktok btn-icon" style="color: #ff0050;"></i>
+                        <span class="btn-text">TIKTOK CHANNEL</span>
+                    </div>
+                    <i class="fas fa-chevron-right btn-arrow"></i>
+                </a>
+
+                <a href="https://www.youtube.com/@EmaCryptoTrading" class="btn-link spotlight-btn">
+                    <div class="btn-left">
+                        <i class="fab fa-youtube btn-icon" style="color: #ff0000;"></i>
+                        <span class="btn-text">YOUTUBE TRADING</span>
+                    </div>
+                    <i class="fas fa-chevron-right btn-arrow"></i>
+                </a>
+            </div>
+
+            <!-- Exchanges (Referrals) -->
+            <div class="hub-title stagger-item visible">💰 Sàn Giao Dịch Uy Tín (Giảm Phí)</div>
+
+            <div class="community-hub stagger-item visible">
+                <a href="https://emabackfee.com/" class="hub-card spotlight-btn"
+                    style="width: 100%; flex: auto; background: rgba(255, 215, 0, 0.08); border: 1px solid var(--fire-primary);">
+                    <i class="fas fa-hand-holding-usd hc-icon" style="color: #ffd700;"></i>
+                    <span class="hc-name">WEB HOÀN PHÍ</span>
+                    <span class="hc-action">HOÀN TIỀN GIAO DỊCH</span>
+                </a>
+            </div>
+            <div class="community-hub stagger-item visible">
+                <a href="https://www.okx.com/vi/join/78013108" class="hub-card spotlight-btn">
+                    <i class="fas fa-exchange-alt hc-icon" style="color: #fff;"></i>
+                    <span class="hc-name">OKX</span>
+                    <span class="hc-action">Giảm 20% Phí</span>
+                </a>
+
+                <a href="https://www.mexc.com/vi-VN/register?inviteCode=mexc-1ccvF" class="hub-card spotlight-btn">
+                    <i class="fas fa-chart-line hc-icon" style="color: #28a745;"></i>
+                    <span class="hc-name">MEXC</span>
+                    <span class="hc-action">Giảm 20% Phí</span>
+                </a>
+            </div>
+            <div class="community-hub stagger-item visible">
+                <a href="https://partner.bybit.com/b/emaluxury" class="hub-card spotlight-btn">
+                    <i class="fas fa-coins hc-icon" style="color: #f7a600;"></i>
+                    <span class="hc-name">BYBIT</span>
+                    <span class="hc-action">Giảm 40% Phí</span>
+                </a>
+
+                <a href="https://bingx.com/invite/G3FS1W" class="hub-card spotlight-btn">
+                    <i class="fas fa-wallet hc-icon" style="color: #0055ff;"></i>
+                    <span class="hc-name">BINGX</span>
+                    <span class="hc-action">Giảm 45% Phí</span>
+                </a>
+            </div>
+            <div class="community-hub stagger-item visible">
+                <a href="https://accounts.binance.com/register?ref=86066969" class="hub-card spotlight-btn"
+                    style="width: 100%; flex: auto;">
+                    <i class="fab fa-bitcoin hc-icon" style="color: #FCD535;"></i>
+                    <span class="hc-name">BINANCE</span>
+                    <span class="hc-action">Giảm 30% Phí</span>
+                </a>
+            </div>
+
+            <div class="social-footer stagger-item visible">
+                <a href="https://x.com/emacrypto_vn" class="sf-item"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/emacryptovn" class="sf-item"><i class="fab fa-facebook"></i></a>
+                <a href="https://t.me/emacrypto" class="sf-item"><i class="fab fa-telegram"></i></a>
+
+                <!-- No Insta in source, placeholder -->
+                <span class="sf-item" onclick="toggleMute()" style="cursor: pointer;"><i id="vol-icon"
+                        class="fas fa-volume-up"></i></span>
+            </div>
+
+            <div class="status-footer stagger-item visible">
+                <div class="stat-box">
+                    <div class="live-ping"></div> SYSTEM: EMACRYPTO
+                </div>
+                <div class="stat-box" id="live-clock">09:57:31</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 1. SPOTLIGHT EFFECT (Đèn pin soi nút)
+        document.querySelectorAll('.spotlight-btn').forEach(btn => {
+            btn.addEventListener('mousemove', e => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                btn.style.setProperty('--x', `${x}px`);
+                btn.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // 3. LOGIC MỞ & ANIMATION
+        const overlay = document.getElementById('overlay');
+        const staggerItems = document.querySelectorAll('.stagger-item');
+        const video = document.getElementById('bg-video');
+        const audio = document.getElementById('bg-music');
+        const volIcon = document.getElementById('vol-icon');
+
+        overlay.addEventListener('click', () => {
+            overlay.style.transform = 'scale(1.1)';
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 800);
+
+            video.play();
+            audio.volume = 0.5;
+            audio.play().catch(() => { });
+
+            staggerItems.forEach((item, index) => {
+                setTimeout(() => item.classList.add('visible'), index * 100);
+            });
+        });
+
+        // 4. CLOCK
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').innerText = now.toLocaleTimeString('en-US', { hour12: false });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 5. CANVAS EMBERS
+        const canvas = document.getElementById('embers-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        const embers = [];
+
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Ember {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + Math.random() * 100;
+                this.size = Math.random() * 2 + 0.5;
+                this.speed = Math.random() * 1 + 0.2;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.y -= this.speed;
+                if (this.y < -10) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`; // Gold particles
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+        for (let i = 0; i < 40; i++) embers.push(new Ember());
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            embers.forEach(e => { e.update(); e.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // 6. CLICK PARTICLES
+        document.addEventListener('click', (e) => {
+            for (let i = 0; i < 8; i++) {
+                const p = document.createElement('div');
+                p.className = 'click-particle';
+                document.body.appendChild(p);
+                const angle = Math.random() * Math.PI * 2;
+                const v = Math.random() * 40 + 10;
+                p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+                p.style.setProperty('--tx', Math.cos(angle) * v + 'px');
+                p.style.setProperty('--ty', Math.sin(angle) * v + 'px');
+                setTimeout(() => p.remove(), 500);
+            }
+        });
+
+        function toggleMute() {
+            audio.muted = !audio.muted;
+            volIcon.className = audio.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+        }
+    </script>
+
+
+    <audio id="click-sound">
+        <source src="./assets/click.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Sound Effect
+        const clickSound = document.getElementById('click-sound');
+        if (clickSound) {
+            clickSound.volume = 0.4;
+            const interactiveElements = document.querySelectorAll('a, .spotlight-btn, .sf-item, .enter-btn-pro');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('click', () => {
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch(e => { }); // Ignore auto-play blocking errors
+                });
+            });
+        }
+
+        // Global fallback: Play BG music on first interaction if overlay didn't catch it
+        document.addEventListener('click', function () {
+            const bgAudio = document.getElementById('bg-music');
+            if (bgAudio && bgAudio.paused) {
+                bgAudio.volume = 0.5;
+                bgAudio.play().catch(e => console.log("Audio play failed:", e));
+            }
+        }, { once: true });
+    </script>
+</body>
+
+</html>
