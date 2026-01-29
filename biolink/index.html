@@ -557,18 +557,24 @@
         }
 
         .sf-item {
-            font-size: 1.4rem;
-            color: #888;
-            transition: 0.3s;
-            padding: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
             width: 50px;
             height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 12px;
             text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .sf-item svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+            display: block;
         }
 
         .sf-item:hover {
@@ -673,7 +679,10 @@
 <body>
 
     <div id="toast">
-        <i class="fas fa-check-circle toast-icon"></i>
+        <svg class="toast-icon" style="width:1.2em;height:1.2em;fill:currentColor" viewBox="0 0 512 512">
+            <path
+                d="M256 512a256 256 0 1 1 0-512 256 256 0 1 1 0 512zM374 145.7c-10.7-7.8-25.7-5.4-33.5 5.3L221.1 315.2 169 263.1c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l72 72c5 5 11.8 7.5 18.8 7s13.4-4.1 17.5-9.8L379.3 179.2c7.8-10.7 5.4-25.7-5.3-33.5z" />
+        </svg>
         <span class="toast-text">Đã sao chép!</span>
     </div>
 
@@ -715,21 +724,40 @@
 
             <h1 class="username stagger-item visible">EmaCryptoVN</h1>
             <div class="role-tag stagger-item visible">
-                <i class="fas fa-fire fire-icon"></i> Cộng Đồng Trading Số 1 Việt Nam
+                <svg class="fire-icon" style="width:1em;height:1em;fill:currentColor" viewBox="0 0 448 512">
+                    <path
+                        d="M160.5-26.4c9.3-7.8 23-7.5 31.9 .9 12.3 11.6 23.3 24.4 33.9 37.4 13.5 16.5 29.7 38.3 45.3 64.2 5.2-6.8 10-12.8 14.2-17.9 1.1-1.3 2.2-2.7 3.3-4.1 7.9-9.8 17.7-22.1 30.8-22.1 13.4 0 22.8 11.9 30.8 22.1 1.3 1.7 2.6 3.3 3.9 4.8 10.3 12.4 24 30.3 37.7 52.4 27.2 43.9 55.6 106.4 55.6 176.6 0 123.7-100.3 224-224 224S0 411.7 0 288c0-91.1 41.1-170 80.5-225 19.9-27.7 39.7-49.9 54.6-65.1 8.2-8.4 16.5-16.7 25.5-24.2zM225.7 416c25.3 0 47.7-7 68.8-21 42.1-29.4 53.4-88.2 28.1-134.4-4.5-9-16-9.6-22.5-2l-25.2 29.3c-6.6 7.6-18.5 7.4-24.7-.5-17.3-22.1-49.1-62.4-65.3-83-5.4-6.9-15.2-8-21.5-1.9-18.3 17.8-51.5 56.8-51.5 104.3 0 68.6 50.6 109.2 113.7 109.2z" />
+                </svg> Cộng Đồng Trading Số 1 Việt Nam
             </div>
 
             <!-- Main Communities (Big Impact) -->
             <div class="community-hub stagger-item visible">
                 <a href="https://t.me/emacrypto" class="hub-card spotlight-btn">
-                    <i class="fab fa-telegram-plane hc-icon" style="color: #0088cc;"></i>
+                    <svg class="hc-icon" style="color: #0088cc; width:1em;height:1em;fill:currentColor"
+                        viewBox="0 0 512 512">
+                        <path
+                            d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496zM371 176.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2 .5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3 .6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7 .5 3.2 .6 6.5 .4 9.8z" />
+                    </svg>
                     <span class="hc-name">Telegram VIP</span>
-                    <span class="hc-action">Join Now <i class="fas fa-bolt"></i></span>
+                    <span class="hc-action">Join Now <svg style="width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 448 512">
+                            <path
+                                d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z" />
+                        </svg></span>
                 </a>
 
                 <a href="https://www.facebook.com/emacryptovn" class="hub-card spotlight-btn">
-                    <i class="fab fa-facebook-f hc-icon" style="color: #1877f2;"></i>
+                    <svg class="hc-icon" style="color: #1877f2; width:1em;height:1em;fill:currentColor"
+                        viewBox="0 0 320 512">
+                        <path
+                            d="M80 299.3l0 212.7 116 0 0-212.7 86.5 0 18-97.8-104.5 0 0-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 .4 37 1.2l0-88.7C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4l0 42.1-66 0 0 97.8 66 0z" />
+                    </svg>
                     <span class="hc-name">Facebook Page</span>
-                    <span class="hc-action">Follow <i class="fas fa-fire"></i></span>
+                    <span class="hc-action">Follow <svg style="width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 448 512">
+                            <path
+                                d="M160.5-26.4c9.3-7.8 23-7.5 31.9 .9 12.3 11.6 23.3 24.4 33.9 37.4 13.5 16.5 29.7 38.3 45.3 64.2 5.2-6.8 10-12.8 14.2-17.9 1.1-1.3 2.2-2.7 3.3-4.1 7.9-9.8 17.7-22.1 30.8-22.1 13.4 0 22.8 11.9 30.8 22.1 1.3 1.7 2.6 3.3 3.9 4.8 10.3 12.4 24 30.3 37.7 52.4 27.2 43.9 55.6 106.4 55.6 176.6 0 123.7-100.3 224-224 224S0 411.7 0 288c0-91.1 41.1-170 80.5-225 19.9-27.7 39.7-49.9 54.6-65.1 8.2-8.4 16.5-16.7 25.5-24.2zM225.7 416c25.3 0 47.7-7 68.8-21 42.1-29.4 53.4-88.2 28.1-134.4-4.5-9-16-9.6-22.5-2l-25.2 29.3c-6.6 7.6-18.5 7.4-24.7-.5-17.3-22.1-49.1-62.4-65.3-83-5.4-6.9-15.2-8-21.5-1.9-18.3 17.8-51.5 56.8-51.5 104.3 0 68.6 50.6 109.2 113.7 109.2z" />
+                        </svg></span>
                 </a>
             </div>
 
@@ -738,50 +766,92 @@
             <div class="links-group stagger-item visible">
                 <a href="https://t.me/emacrypto" class="btn-link spotlight-btn">
                     <div class="btn-left">
-                        <i class="fab fa-telegram btn-icon" style="color: #0088cc;"></i>
+                        <svg class="btn-icon" style="color: #0088cc; width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 512 512">
+                            <path
+                                d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496zM371 176.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2 .5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3 .6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7 .5 3.2 .6 6.5 .4 9.8z" />
+                        </svg>
                         <span class="btn-text">KÊNH TELEGRAM FUTURE SPOT</span>
                     </div>
-                    <i class="fas fa-chevron-right btn-arrow"></i>
+                    <svg class="btn-arrow" style="width:1em;height:1em;fill:currentColor" viewBox="0 0 320 512">
+                        <path
+                            d="M311.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L243.2 256 73.9 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                    </svg>
                 </a>
 
                 <a href="https://t.me/emacryptovietnam" class="btn-link spotlight-btn">
                     <div class="btn-left">
-                        <i class="fas fa-newspaper btn-icon" style="color: #ffd700;"></i>
+                        <svg class="btn-icon" style="color: #ffd700; width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 512 512">
+                            <path
+                                d="M0 416L0 120c0-13.3 10.7-24 24-24s24 10.7 24 24l0 288c0 13.3 10.7 24 24 24s24-10.7 24-24L96 96c0-35.3 28.7-64 64-64l288 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64zM160 128l0 64c0 17.7 14.3 32 32 32l64 0c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32zm24 240c-13.3 0-24 10.7-24 24s10.7 24 24 24l240 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-240 0zm-24-72c0 13.3 10.7 24 24 24l240 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-240 0c-13.3 0-24 10.7-24 24zM360 176c-13.3 0-24 10.7-24 24s10.7 24 24 24l64 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-64 0z" />
+                        </svg>
                         <span class="btn-text">TIN TỨC NHANH CRYPTO 24/24</span>
                     </div>
-                    <i class="fas fa-chevron-right btn-arrow"></i>
+                    <svg class="btn-arrow" style="width:1em;height:1em;fill:currentColor" viewBox="0 0 320 512">
+                        <path
+                            d="M311.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L243.2 256 73.9 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                    </svg>
                 </a>
 
                 <a href="https://t.me/xuanthangcrypto" class="btn-link spotlight-btn">
                     <div class="btn-left">
-                        <i class="fas fa-briefcase btn-icon" style="color: #fff;"></i>
+                        <svg class="btn-icon" style="color: #fff; width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 512 512">
+                            <path
+                                d="M200 48l112 0c4.4 0 8 3.6 8 8l0 40-128 0 0-40c0-4.4 3.6-8 8-8zm-56 8l0 40-80 0C28.7 96 0 124.7 0 160l0 96 512 0 0-96c0-35.3-28.7-64-64-64l-80 0 0-40c0-30.9-25.1-56-56-56L200 0c-30.9 0-56 25.1-56 56zM512 304l-192 0 0 16c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-16-192 0 0 112c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-112z" />
+                        </svg>
                         <span class="btn-text">LIÊN HỆ CÔNG VIỆC</span>
                     </div>
-                    <i class="fas fa-chevron-right btn-arrow"></i>
+                    <svg class="btn-arrow" style="width:1em;height:1em;fill:currentColor" viewBox="0 0 320 512">
+                        <path
+                            d="M311.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L243.2 256 73.9 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                    </svg>
                 </a>
 
                 <a href="https://emacrypto.vn/" class="btn-link spotlight-btn">
                     <div class="btn-left">
-                        <i class="fas fa-globe btn-icon" style="color: #00ff99;"></i>
+                        <svg class="btn-icon" style="color: #00ff99; width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 512 512">
+                            <path
+                                d="M351.9 280l-190.9 0c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zM160.9 232l190.9 0C349 167.5 334.7 108.1 314.4 64.6 303 40.2 290.7 22.8 279.3 12.2 268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4zm-48 0C116.4 146.4 138.5 66.9 170.8 14.7 78.7 47.3 10.9 131.2 1.5 232l111.4 0zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3L1.5 280zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3l-111.4 0zm111.4-48C501.9 131.2 434.1 47.3 342 14.7 374.3 66.9 396.4 146.4 399.9 232l111.4 0z" />
+                        </svg>
                         <span class="btn-text">WEBSITE TIN TỨC CRYPTO</span>
                     </div>
-                    <i class="fas fa-external-link-alt btn-arrow"></i>
+                    <svg class="btn-arrow" style="width:1em;height:1em;fill:currentColor" viewBox="0 0 512 512">
+                        <path
+                            d="M290.4 19.8C295.4 7.8 307.1 0 320 0L480 0c17.7 0 32 14.3 32 32l0 160c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9L400 157.3 246.6 310.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L354.7 112 297.4 54.6c-9.2-9.2-11.9-22.9-6.9-34.9zM0 176c0-44.2 35.8-80 80-80l80 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-80 0c-8.8 0-16 7.2-16 16l0 256c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16l0-80c0-17.7 14.3-32 32-32s32 14.3 32 32l0 80c0 44.2-35.8 80-80 80L80 512c-44.2 0-80-35.8-80-80L0 176z" />
+                    </svg>
                 </a>
 
                 <a href="https://www.tiktok.com/@emacryptonews" class="btn-link spotlight-btn">
                     <div class="btn-left">
-                        <i class="fab fa-tiktok btn-icon" style="color: #ff0050;"></i>
+                        <svg class="btn-icon" style="color: #ff0050; width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 448 512">
+                            <path
+                                d="M448.5 209.9c-44 .1-87-13.6-122.8-39.2l0 178.7c0 33.1-10.1 65.4-29 92.6s-45.6 48-76.6 59.6-64.8 13.5-96.9 5.3-60.9-25.9-82.7-50.8-35.3-56-39-88.9 2.9-66.1 18.6-95.2 40-52.7 69.6-67.7 62.9-20.5 95.7-16l0 89.9c-15-4.7-31.1-4.6-46 .4s-27.9 14.6-37 27.3-14 28.1-13.9 43.9 5.2 31 14.5 43.7 22.4 22.1 37.4 26.9 31.1 4.8 46-.1 28-14.4 37.2-27.1 14.2-28.1 14.2-43.8l0-349.4 88 0c-.1 7.4 .6 14.9 1.9 22.2 3.1 16.3 9.4 31.9 18.7 45.7s21.3 25.6 35.2 34.6c19.9 13.1 43.2 20.1 67 20.1l0 87.4z" />
+                        </svg>
                         <span class="btn-text">TIKTOK CHANNEL</span>
                     </div>
-                    <i class="fas fa-chevron-right btn-arrow"></i>
+                    <svg class="btn-arrow" style="width:1em;height:1em;fill:currentColor" viewBox="0 0 320 512">
+                        <path
+                            d="M311.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L243.2 256 73.9 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                    </svg>
                 </a>
 
                 <a href="https://www.youtube.com/@EmaCryptoTrading" class="btn-link spotlight-btn">
                     <div class="btn-left">
-                        <i class="fab fa-youtube btn-icon" style="color: #ff0000;"></i>
+                        <svg class="btn-icon" style="color: #ff0000; width:1em;height:1em;fill:currentColor"
+                            viewBox="0 0 576 512">
+                            <path
+                                d="M549.7 124.1C543.5 100.4 524.9 81.8 501.4 75.5 458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5C51.2 81.8 32.7 100.4 26.4 124.1 15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8 42.6 11.5 213.4 11.5 213.4 11.5s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6l0-162.4 142.7 81.2-142.7 81.2z" />
+                        </svg>
                         <span class="btn-text">YOUTUBE TRADING</span>
                     </div>
-                    <i class="fas fa-chevron-right btn-arrow"></i>
+                    <svg class="btn-arrow" style="width:1em;height:1em;fill:currentColor" viewBox="0 0 320 512">
+                        <path
+                            d="M311.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L243.2 256 73.9 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                    </svg>
                 </a>
             </div>
 
@@ -791,33 +861,49 @@
             <div class="community-hub stagger-item visible">
                 <a href="https://emabackfee.com/" class="hub-card spotlight-btn"
                     style="width: 100%; flex: auto; background: rgba(255, 215, 0, 0.08); border: 1px solid var(--fire-primary);">
-                    <i class="fas fa-hand-holding-usd hc-icon" style="color: #ffd700;"></i>
+                    <svg class="hc-icon" style="color: #ffd700; width:1em;height:1em;fill:currentColor"
+                        viewBox="0 0 576 512">
+                        <path
+                            d="M288-16c-13.3 0-24 10.7-24 24l0 12-1.8 0c-36.6 0-66.2 29.7-66.2 66.2 0 33.4 24.9 61.6 58 65.7l61 7.6c5.1 .6 9 5 9 10.2 0 5.7-4.6 10.2-10.2 10.2L240 180c-15.5 0-28 12.5-28 28s12.5 28 28 28l24 0 0 12c0 13.3 10.7 24 24 24s24-10.7 24-24l0-12 1.8 0c36.6 0 66.2-29.7 66.2-66.2 0-33.4-24.9-61.6-58-65.7l-61-7.6c-5.1-.6-9-5-9-10.2 0-5.7 4.6-10.2 10.2-10.2L328 76c15.5 0 28-12.5 28-28s-12.5-28-28-28l-16 0 0-12c0-13.3-10.7-24-24-24zM109.3 341.5L66.7 384 32 384c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32l320.5 0c29 0 57.3-9.3 80.7-26.5l126.6-93.3c17.8-13.1 21.6-38.1 8.5-55.9s-38.1-21.6-55.9-8.5L392.6 416 280 416c-13.3 0-24-10.7-24-24s10.7-24 24-24l72 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-152.2 0c-33.9 0-66.5 13.5-90.5 37.5z" />
+                    </svg>
                     <span class="hc-name">WEB HOÀN PHÍ</span>
                     <span class="hc-action">HOÀN TIỀN GIAO DỊCH</span>
                 </a>
             </div>
             <div class="community-hub stagger-item visible">
                 <a href="https://www.okx.com/vi/join/78013108" class="hub-card spotlight-btn">
-                    <i class="fas fa-exchange-alt hc-icon" style="color: #fff;"></i>
+                    <svg class="hc-icon" style="color: #fff; width:1.5em;height:1.5em;fill:currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M 7.15 8.685 C 7.18 8.705 7.2 8.745 7.2 8.785 L 7.2 15.225 C 7.2 15.265 7.18 15.305 7.15 15.325 C 7.121 15.355 7.082 15.372 7.04 15.375 L 0.16 15.375 C 0.118 15.372 0.079 15.355 0.05 15.325 C 0.02 15.3 0.002 15.264 0 15.225 L 0 8.785 C 0 8.745 0.02 8.705 0.05 8.685 C 0.079 8.655 0.118 8.638 0.16 8.635 L 7.04 8.635 C 7.08 8.635 7.12 8.655 7.15 8.685 Z M 4.8 11.035 C 4.798 10.996 4.78 10.96 4.75 10.935 C 4.721 10.905 4.682 10.887 4.64 10.885 L 2.56 10.885 C 2.52 10.885 2.481 10.899 2.45 10.925 C 2.42 10.95 2.402 10.986 2.4 11.025 L 2.4 12.975 C 2.4 13.015 2.42 13.055 2.45 13.075 C 2.48 13.115 2.52 13.125 2.56 13.125 L 4.64 13.125 C 4.68 13.125 4.72 13.115 4.75 13.085 C 4.78 13.06 4.798 13.024 4.8 12.985 L 4.8 11.035 Z M 21.6 11.035 L 21.6 12.975 C 21.6 13.065 21.53 13.125 21.44 13.125 L 19.36 13.125 C 19.27 13.125 19.2 13.065 19.2 12.975 L 19.2 11.035 C 19.2 10.955 19.27 10.885 19.36 10.885 L 21.44 10.885 C 21.53 10.885 21.6 10.945 21.6 11.035 Z M 19.2 8.785 L 19.2 10.735 C 19.2 10.815 19.13 10.885 19.04 10.885 L 16.96 10.885 C 16.87 10.885 16.8 10.815 16.8 10.735 L 16.8 8.785 C 16.8 8.705 16.87 8.635 16.96 8.635 L 19.04 8.635 C 19.13 8.635 19.2 8.705 19.2 8.785 Z M 24 8.785 L 24 10.735 C 24 10.815 23.93 10.885 23.84 10.885 L 21.76 10.885 C 21.67 10.885 21.6 10.815 21.6 10.735 L 21.6 8.785 C 21.6 8.705 21.67 8.635 21.76 8.635 L 23.84 8.635 C 23.93 8.635 24 8.705 24 8.785 Z M 19.2 13.285 L 19.2 15.225 C 19.2 15.305 19.13 15.375 19.04 15.375 L 16.96 15.375 C 16.87 15.375 16.8 15.305 16.8 15.225 L 16.8 13.275 C 16.8 13.195 16.87 13.125 16.96 13.125 L 19.04 13.125 C 19.13 13.125 19.2 13.195 19.2 13.275 L 19.2 13.285 Z M 24 13.285 L 24 15.225 C 24 15.305 23.93 15.375 23.84 15.375 L 21.76 15.375 C 21.67 15.375 21.6 15.305 21.6 15.225 L 21.6 13.275 C 21.6 13.195 21.67 13.125 21.76 13.125 L 23.84 13.125 C 23.93 13.125 24 13.195 24 13.275 L 24 13.285 Z M 15.6 8.785 L 15.6 10.735 C 15.6 10.815 15.53 10.885 15.44 10.885 L 13.36 10.885 C 13.27 10.885 13.2 10.815 13.2 10.735 L 13.2 8.785 C 13.2 8.705 13.27 8.635 13.36 8.635 L 15.44 8.635 C 15.53 8.635 15.6 8.705 15.6 8.785 Z M 15.6 13.285 L 15.6 15.225 C 15.6 15.305 15.53 15.375 15.44 15.375 L 13.36 15.375 C 13.27 15.375 13.2 15.305 13.2 15.225 L 13.2 13.275 C 13.2 13.195 13.27 13.125 13.36 13.125 L 15.44 13.125 C 15.53 13.125 15.6 13.195 15.6 13.275 L 15.6 13.285 Z M 13.2 12.985 C 13.195 13.069 13.125 13.135 13.04 13.135 L 10.8 13.135 L 10.8 15.215 C 10.8 15.255 10.78 15.295 10.75 15.325 C 10.719 15.351 10.68 15.365 10.64 15.365 L 8.56 15.365 C 8.516 15.368 8.473 15.353 8.44 15.325 C 8.414 15.298 8.399 15.262 8.4 15.225 L 8.4 8.775 C 8.4 8.735 8.41 8.695 8.44 8.675 C 8.472 8.643 8.515 8.625 8.56 8.625 L 10.64 8.625 C 10.68 8.625 10.72 8.645 10.75 8.675 C 10.78 8.695 10.8 8.735 10.8 8.775 L 10.8 10.875 L 13.04 10.875 C 13.08 10.875 13.12 10.885 13.15 10.915 C 13.18 10.945 13.2 10.985 13.2 11.015 L 13.2 12.965 L 13.2 12.985 Z" />
+                    </svg>
                     <span class="hc-name">OKX</span>
                     <span class="hc-action">Giảm 20% Phí</span>
                 </a>
 
                 <a href="https://www.mexc.com/vi-VN/register?inviteCode=mexc-1ccvF" class="hub-card spotlight-btn">
-                    <i class="fas fa-chart-line hc-icon" style="color: #28a745;"></i>
+                    <svg class="hc-icon" style="color: #28a745; width:2em;height:1em;fill:currentColor"
+                        viewBox="0 0 100 32"><text x="50" y="24" font-family="Arial, sans-serif" font-weight="900"
+                            font-size="30" text-anchor="middle">MEXC</text></svg>
                     <span class="hc-name">MEXC</span>
                     <span class="hc-action">Giảm 20% Phí</span>
                 </a>
             </div>
             <div class="community-hub stagger-item visible">
                 <a href="https://partner.bybit.com/b/emaluxury" class="hub-card spotlight-btn">
-                    <i class="fas fa-coins hc-icon" style="color: #f7a600;"></i>
+                    <svg class="hc-icon" style="color: #f7a600; width:1.25em;height:1.25em;fill:currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M11.877 0 1.252 5.885a.253.253 0 0 0 .003.446l5.679 3.02c.077.041.17.04.246-.004l4.694-2.697a.254.254 0 0 1 .253 0l4.692 2.697a.253.253 0 0 0 .246.004l5.682-3.021a.253.253 0 0 0 .003-.446L12.122 0a.254.254 0 0 0-.245 0ZM6.924 10.898l-5.71-3.036a.254.254 0 0 0-.373.224V18.25c0 .093.05.178.131.222l9.976 5.495a.254.254 0 0 0 .376-.222v-6.053a.255.255 0 0 0-.127-.22l-4.012-2.305a.252.252 0 0 1-.127-.22v-3.825a.253.253 0 0 0-.135-.224Zm10.152 0 5.71-3.035a.254.254 0 0 1 .373.224v10.164c0 .093-.05.178-.131.222l-9.976 5.495a.254.254 0 0 1-.376-.222v-6.053c0-.091.049-.175.127-.22l4.012-2.305a.252.252 0 0 0 .127-.22v-3.825c0-.094.052-.18.135-.224Z" />
+                    </svg>
                     <span class="hc-name">BYBIT</span>
                     <span class="hc-action">Giảm 40% Phí</span>
                 </a>
 
                 <a href="https://bingx.com/invite/G3FS1W" class="hub-card spotlight-btn">
-                    <i class="fas fa-wallet hc-icon" style="color: #0055ff;"></i>
+                    <svg class="hc-icon" style="color: #0055ff; width:2em;height:1em;fill:currentColor"
+                        viewBox="0 0 100 32"><text x="50" y="24" font-family="Arial, sans-serif" font-weight="900"
+                            font-size="30" text-anchor="middle">BingX</text></svg>
                     <span class="hc-name">BINGX</span>
                     <span class="hc-action">Giảm 45% Phí</span>
                 </a>
@@ -825,20 +911,41 @@
             <div class="community-hub stagger-item visible">
                 <a href="https://accounts.binance.com/register?ref=86066969" class="hub-card spotlight-btn"
                     style="width: 100%; flex: auto;">
-                    <i class="fab fa-bitcoin hc-icon" style="color: #FCD535;"></i>
+                    <svg class="hc-icon" style="color: #FCD535; width:1em;height:1em;fill:currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M16.624 13.9202l2.7175 2.7154-7.353 7.353-7.353-7.352 2.7175-2.7164 4.6355 4.6595 4.6356-4.6595zm4.6366-4.6366L24 12l-2.7154 2.7164L18.5682 12l2.6924-2.7164zm-9.272.001l2.7163 2.6914-2.7164 2.7174v-.001L9.2721 12l2.7164-2.7154zm-9.2722-.001L5.4088 12l-2.6914 2.6924L0 12l2.7164-2.7164zM11.9885.0115l7.353 7.329-2.7174 2.7154-4.6356-4.6356-4.6355 4.6595-2.7174-2.7154 7.353-7.353z" />
+                    </svg>
                     <span class="hc-name">BINANCE</span>
                     <span class="hc-action">Giảm 30% Phí</span>
                 </a>
             </div>
 
             <div class="social-footer stagger-item visible">
-                <a href="https://x.com/emacrypto_vn" class="sf-item"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.facebook.com/emacryptovn" class="sf-item"><i class="fab fa-facebook"></i></a>
-                <a href="https://t.me/emacrypto" class="sf-item"><i class="fab fa-telegram"></i></a>
+                <a href="https://x.com/emacrypto_vn" class="sf-item"><svg viewBox="0 0 448 512">
+                        <path
+                            d="M357.2 48L427.8 48 273.6 224.2 455 464 313 464 201.7 318.6 74.5 464 3.8 464 168.7 275.5-5.2 48 140.4 48 240.9 180.9 357.2 48zM332.4 421.8l39.1 0-252.4-333.8-42 0 255.3 333.8z" />
+                    </svg></a>
+                <a href="https://www.facebook.com/emacryptovn" class="sf-item"><svg viewBox="0 0 320 512">
+                        <path
+                            d="M80 299.3l0 212.7 116 0 0-212.7 86.5 0 18-97.8-104.5 0 0-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 .4 37 1.2l0-88.7C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4l0 42.1-66 0 0 97.8 66 0z" />
+                    </svg></a>
+                <a href="https://t.me/emacrypto" class="sf-item"><svg viewBox="0 0 512 512">
+                        <path
+                            d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496zM371 176.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2 .5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3 .6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7 .5 3.2 .6 6.5 .4 9.8z" />
+                    </svg></a>
 
                 <!-- No Insta in source, placeholder -->
-                <span class="sf-item" onclick="toggleMute()" style="cursor: pointer;"><i id="vol-icon"
-                        class="fas fa-volume-up"></i></span>
+                <span class="sf-item" onclick="toggleMute()" style="cursor: pointer;">
+                    <svg id="vol-up" style="display:block" viewBox="0 0 640 512">
+                        <path
+                            d="M533.6 32.5c-10.3-8.4-25.4-6.8-33.8 3.5s-6.8 25.4 3.5 33.8C557.5 113.8 592 180.8 592 256s-34.5 142.2-88.7 186.3c-10.3 8.4-11.8 23.5-3.5 33.8s23.5 11.8 33.8 3.5C598.5 426.7 640 346.2 640 256S598.5 85.2 533.6 32.5zM473.1 107c-10.3-8.4-25.4-6.8-33.8 3.5s-6.8 25.4 3.5 33.8C475.3 170.7 496 210.9 496 256s-20.7 85.3-53.2 111.8c-10.3 8.4-11.8 23.5-3.5 33.8s23.5 11.8 33.8 3.5c43.2-35.2 70.9-88.9 70.9-149s-27.7-113.8-70.9-149zm-60.5 74.5c-10.3-8.4-25.4-6.8-33.8 3.5s-6.8 25.4 3.5 33.8C393.1 227.6 400 241 400 256s-6.9 28.4-17.7 37.3c-10.3 8.4-11.8 23.5-3.5 33.8s23.5 11.8 33.8 3.5C434.1 312.9 448 286.1 448 256s-13.9-56.9-35.4-74.5zM80 352l48 0 134.1 119.2c6.4 5.7 14.6 8.8 23.1 8.8 19.2 0 34.8-15.6 34.8-34.8l0-378.4c0-19.2-15.6-34.8-34.8-34.8-8.5 0-16.7 3.1-23.1 8.8L128 160 80 160c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48z" />
+                    </svg>
+                    <svg id="vol-mute" style="display:none" viewBox="0 0 576 512">
+                        <path
+                            d="M48 352l48 0 134.1 119.2c6.4 5.7 14.6 8.8 23.1 8.8 19.2 0 34.8-15.6 34.8-34.8l0-378.4c0-19.2-15.6-34.8-34.8-34.8-8.5 0-16.7 3.1-23.1 8.8L96 160 48 160c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48zM367 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+                    </svg>
+                </span>
             </div>
 
             <div class="status-footer stagger-item visible">
@@ -945,7 +1052,8 @@
 
         function toggleMute() {
             audio.muted = !audio.muted;
-            volIcon.className = audio.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+            document.getElementById('vol-up').style.display = audio.muted ? 'none' : 'block';
+            document.getElementById('vol-mute').style.display = audio.muted ? 'block' : 'none';
         }
     </script>
 
